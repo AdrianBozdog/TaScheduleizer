@@ -104,6 +104,9 @@ class TestUI(TestCase):
     def test_command_login_missing_args(self):
         self.assertEqual(self.UI.command("login janewayk123"), "login requires 2 arguments")
 
+    def test_command_login_missing_args(self):
+        self.assertEqual(self.UI.command("login 123456"), "login requires 2 arguments")
+
     """ 
         createAccount command
         When the createAccount command is entered, it takes 3 arguments:
@@ -658,4 +661,33 @@ class TestUI(TestCase):
 
     def test_command_viewTAAssignments_classDoesNotExist(self):
         self.assertEqual(self.UI.command("viewTAAssignments classNumber"), "Class does not exist")
+
+    """
+    Create a new class and check that viewTAAssignments works
+    
+    
+    """
+    def test_create_class_view_assigment_ssuccesfull(self):
+        self.assertEqual(self.UI.command("viewTAAssignments 352"), "Class does not exist")
+
+        Course.objects.create(name="DataStructures_2", number=352, onCampus=True, classDays="TR",
+                              classHoursStart=1200, classHoursEnd=1300)
+
+        self.assertEqual(self.UI.command("viewTAAssignments 352"), "The TA Assignments are: ")
+
+    def test_create_class_view_assignment_failed_incorect_class_creation(self):
+        self.assertEqual(self.UI.command("viewTAAssignments 352"), "Class does not exist")
+
+        Course.objects.create(name="DataStructures_2", number=352, classDays="TR",
+                              classHoursStart=1200, classHoursEnd=1300)
+        self.assertEqual(self.UI.command("viewTAAssignments 352"), "Class does not exist")
+
+
+
+
+
+
+
+
+
 
