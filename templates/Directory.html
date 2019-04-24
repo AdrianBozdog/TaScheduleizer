@@ -4,21 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Course Assignments</title>
-      {% load staticfiles %}
-    <link rel="stylesheet" type = "text/css" href="{% static 'courseAssignmentList.css' %}">
+    <title>Directory</title>
+    <link rel="stylesheet" type = "text/css" href="{% static 'background.css' %}">
 </head>
 <body>
-<h1>Course Assignments</h1>
-{% for i in courseList %}
-    <p>{{ i }}</p><br>
+<h1>Directory</h1>
+{% for i in directory %}
+<p>{{ i }}</p>
 {% endfor %}
 
-{%  if i.title == 1 %}
-<a href="/ta/">TA Home</a>
+{%  if i.title == 1 %}<a href="/ta/">TA Home</a>
 {% endif %}
-{% if i.title == 2 %}
-<a href="/instructor/">Instructor Home</a>
+{% if i.title == 2 %}<a href="/instructor/">Instructor Home</a>
 {% endif %}
 {% if i.title == 3 %}<a href="/administrator/">Admin Home</a>
 {% endif %}
